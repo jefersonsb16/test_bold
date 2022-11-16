@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TestBold"
 include ':app'
+include ':usecases'
+include ':domain'
+include ':data'
