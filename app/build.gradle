@@ -25,7 +25,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "URL_BASE", "\"https://api.weatherapi.com/v1/\""
+        }
         release {
+            buildConfigField "String", "URL_BASE", "\"https://api.weatherapi.com/v1/\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
