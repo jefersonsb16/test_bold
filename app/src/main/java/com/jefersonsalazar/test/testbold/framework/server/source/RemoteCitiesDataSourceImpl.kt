@@ -2,8 +2,8 @@ package com.jefersonsalazar.test.testbold.framework.server.source
 
 import arrow.core.Either
 import com.jefersonsalazar.test.data.source.RemoteCitiesDataSource
-import com.jefersonsalazar.test.domain.CityDomain
 import com.jefersonsalazar.test.domain.Error
+import com.jefersonsalazar.test.domain.entities.CityDomain
 import com.jefersonsalazar.test.testbold.framework.server.mappers.toCityDomain
 import com.jefersonsalazar.test.testbold.framework.server.service.CitiesService
 import com.jefersonsalazar.test.testbold.framework.util.tryCall

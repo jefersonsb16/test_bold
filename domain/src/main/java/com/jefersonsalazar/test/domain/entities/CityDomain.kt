@@ -1,4 +1,4 @@
-package com.jefersonsalazar.test.domain
+package com.jefersonsalazar.test.domain.entities
 
 data class CityDomain(
     val id: Long,
