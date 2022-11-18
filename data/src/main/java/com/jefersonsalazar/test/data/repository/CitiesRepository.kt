@@ -5,6 +5,7 @@ import com.jefersonsalazar.test.data.source.LocalCitiesDataSource
 import com.jefersonsalazar.test.data.source.RemoteCitiesDataSource
 import com.jefersonsalazar.test.domain.ErrorDomain
 import com.jefersonsalazar.test.domain.entities.CityDomain
+import com.jefersonsalazar.test.domain.entities.ResponseDetailCitySearchDomain
 import kotlinx.coroutines.flow.Flow
 
 class CitiesRepository(
@@ -19,4 +20,7 @@ class CitiesRepository(
     suspend fun saveCity(city: CityDomain) = localCitiesDataSource.saveCity(city)
 
     fun getRecentSearches(): Flow<List<CityDomain>> = localCitiesDataSource.getRecentSearches()
+
+    suspend fun getDetailCity(nameCity: String): Either<ErrorDomain, ResponseDetailCitySearchDomain> =
+        remoteCitiesDataSource.getDetailCity(apiKey, nameCity)
 }

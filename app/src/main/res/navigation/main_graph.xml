@@ -17,10 +17,10 @@
     <fragment
         android:id="@+id/destinationDetailSearchFragment"
         android:name="com.jefersonsalazar.test.testbold.features.detail_search.DetailSearchFragment"
-        android:label="fragment_detail_search"
+        android:label="@string/title_detail_search_text"
         tools:layout="@layout/fragment_detail_search">
         <argument
-            android:name="cityName"
+            android:name="locationText"
             app:argType="string" />
     </fragment>
 </navigation>

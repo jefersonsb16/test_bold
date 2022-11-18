@@ -11,6 +11,7 @@
     <string name="not_results_search_text">No results found for your search</string>
 
     <!-- region detail search -->
+    <string name="title_detail_search_text">City detail</string>
 
     <!-- region error messages -->
     <string name="error">Error!</string>

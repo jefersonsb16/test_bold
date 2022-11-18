@@ -37,3 +37,7 @@ fun ImageView.bindImageUrl(
         .placeholder(placeholder)
         .into(this)
 }
+
+fun String.splitAndGetJustName(): String {
+    return this.split(",")[0]
+}

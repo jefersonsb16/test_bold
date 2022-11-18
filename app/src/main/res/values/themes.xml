@@ -48,4 +48,13 @@
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">true</item>
     </style>
+
+    <style name="ToolbarTheme" parent="Theme.TestBold">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="ToolbarTextAppearance">
+        <item name="android:fontFamily">@font/causten_round</item>
+        <item name="android:textSize">19sp</item>
+    </style>
 </resources>
