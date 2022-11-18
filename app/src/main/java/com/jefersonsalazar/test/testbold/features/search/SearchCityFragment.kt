@@ -53,6 +53,9 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
 
     private fun updateUiWithState(state: SearchCityViewModel.UIState) {
         binding.searchProgress.isVisible = state.loading
+        state.showMessageStartSearch?.let { isVisible ->
+            binding.textViewMessageStartSearch.isVisible = isVisible
+        }
         state.searchResultsList?.let { cities ->
             searchCityAdapter.submitList(cities)
         }
@@ -60,6 +63,11 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
             recentSearchesAdapter.submitList(recentCities)
             binding.textViewRecentSearches.isVisible = recentCities.isNotEmpty()
             binding.recyclerViewRecentSearches.isVisible = recentCities.isNotEmpty()
+        }
+        state.showMessageNotSearchResults?.let { isVisible ->
+            binding.backGroundViewNotSearchResults.isVisible = isVisible
+            binding.imageViewNotSearchResults.isVisible = isVisible
+            binding.textViewNotSearchResults.isVisible = isVisible
         }
     }
 
@@ -82,6 +90,8 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
     private fun goToSearchCity(search: String) {
         if (search.length >= MIN_LENGTH_TEXT_INPUT_FOR_SEARCH) {
             searchViewModel.onSearchCity(search)
+        } else {
+            searchViewModel.clearCurrentSearchResults()
         }
     }
 

@@ -34,7 +34,14 @@ class SearchCityViewModel @Inject constructor(
                 _state.update { UIState(error = error) }
             },
             ifRight = { results ->
-                _state.update { it.copy(searchResultsList = results, loading = false) }
+                _state.update {
+                    it.copy(
+                        searchResultsList = results,
+                        loading = false,
+                        showMessageStartSearch = false,
+                        showMessageNotSearchResults = results.isEmpty()
+                    )
+                }
             }
         )
     }
@@ -55,10 +62,16 @@ class SearchCityViewModel @Inject constructor(
         saveRecentCityViewedUseCase(city)
     }
 
+    fun clearCurrentSearchResults() {
+        _state.update { it.copy(searchResultsList = listOf(), showMessageStartSearch = true) }
+    }
+
     data class UIState(
         val error: ErrorDomain? = null,
         val loading: Boolean = false,
         val searchResultsList: List<CityDomain>? = null,
-        val recentSearchesList: List<CityDomain>? = null
+        val recentSearchesList: List<CityDomain>? = null,
+        val showMessageStartSearch: Boolean? = null,
+        val showMessageNotSearchResults: Boolean? = null
     )
 }

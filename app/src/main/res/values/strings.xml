@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">TestBold</string>
+    <string name="generic_content_description">N/A</string>
 
     <!-- region search -->
     <string name="title_search_text">Choose a city</string>
     <string name="hint_search_input_text">Search a city</string>
     <string name="title_recent_searches_text">Recently viewed</string>
     <string name="title_search_results_text">Search results</string>
+    <string name="message_start_search_text">Enter at least 3 letters to start search</string>
+    <string name="text_not_results_search">No results found for your search</string>
 
     <!-- region detail search -->
 </resources>
