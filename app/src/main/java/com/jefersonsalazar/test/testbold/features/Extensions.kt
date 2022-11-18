@@ -30,9 +30,12 @@ fun ImageView.bindImageUrl(
         setImageResource(placeholder)
         return
     }
+    val completeUrl = if (url.contains("https:")) {
+        url
+    } else "https:$url"
 
     Glide.with(context)
-        .load(url)
+        .load(completeUrl)
         .error(errorPlaceholder)
         .placeholder(placeholder)
         .into(this)

@@ -67,9 +67,8 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
             binding.recyclerViewRecentSearches.isVisible = recentCities.isNotEmpty()
         }
         state.showMessageNotSearchResults?.let { isVisible ->
-            binding.backGroundViewNotSearchResults.isVisible = isVisible
-            binding.imageViewNotSearchResults.isVisible = isVisible
-            binding.textViewNotSearchResults.isVisible = isVisible
+            binding.includeNotResults.imageViewNotSearchResults.isVisible = isVisible
+            binding.includeNotResults.textViewNotSearchResults.isVisible = isVisible
         }
         state.error?.let { error ->
             showErrorFactory.getDialog(requireContext(), error).show()

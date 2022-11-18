@@ -109,44 +109,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- info when search results is empty -->
-    <View
-        android:id="@+id/backGroundViewNotSearchResults"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/bg_empty_search"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewNotSearchResults"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewNotSearchResults"
-        app:layout_constraintStart_toStartOf="@+id/imageViewNotSearchResults"
-        app:layout_constraintTop_toTopOf="@+id/imageViewNotSearchResults" />
-
-    <ImageView
-        android:id="@+id/imageViewNotSearchResults"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="36dp"
-        android:contentDescription="@string/generic_content_description"
-        android:src="@drawable/ic_search"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSearchResults" />
-
-    <TextView
-        android:id="@+id/textViewNotSearchResults"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/includeNotResults"
+        layout="@layout/view_not_results_search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/causten_round"
-        android:gravity="center_horizontal"
-        android:text="@string/not_results_search_text"
-        android:textColor="@color/colorSecondary"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/backGroundViewNotSearchResults"
-        app:layout_constraintStart_toStartOf="@+id/backGroundViewNotSearchResults"
-        app:layout_constraintTop_toBottomOf="@+id/backGroundViewNotSearchResults" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearchResults"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

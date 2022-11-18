@@ -10,8 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
+import com.jefersonsalazar.test.domain.entities.CurrentWeatherDomain
+import com.jefersonsalazar.test.testbold.R
 import com.jefersonsalazar.test.testbold.databinding.FragmentDetailSearchBinding
 import com.jefersonsalazar.test.testbold.features.ShowErrorFactory
+import com.jefersonsalazar.test.testbold.features.bindImageUrl
 import com.jefersonsalazar.test.testbold.features.launchAndCollect
 import com.jefersonsalazar.test.testbold.features.splitAndGetJustName
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,8 +67,27 @@ class DetailSearchFragment : Fragment() {
     private fun updateUiWithState(state: DetailSearchViewModel.UIState) {
         binding.searchProgress.isVisible = state.loading
         state.error?.let { error ->
+            binding.includeNotResultsDetailCity.imageViewNotSearchResults.isVisible = true
+            binding.includeNotResultsDetailCity.textViewNotSearchResults.isVisible = true
             showErrorFactory.getDialog(requireContext(), error).show()
             detailSearchViewModel.resetState()
         }
+        state.detailCity?.let { detailCity ->
+            loadCurrentWeatherInformation(detailCity.currentWeather)
+        }
+    }
+
+    private fun loadCurrentWeatherInformation(currentWeather: CurrentWeatherDomain) {
+        binding.imageviewIconCurrentWeatherCondition.isVisible = true
+        binding.textViewCurrentWeatherCondition.isVisible = true
+        binding.textViewCurrentWeatherTemp.isVisible = true
+
+        binding.textViewCurrentWeatherCondition.text = currentWeather.condition.description
+        binding.textViewCurrentWeatherTemp.text = "${currentWeather.tempCelsius}º"
+        binding.imageviewIconCurrentWeatherCondition.bindImageUrl(
+            currentWeather.condition.icon,
+            R.drawable.weather_placeholder,
+            R.drawable.weather_placeholder
+        )
     }
 }
