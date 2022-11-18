@@ -7,8 +7,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
+import com.jefersonsalazar.test.domain.entities.DayInfoDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.math.RoundingMode
 
 fun <T> LifecycleOwner.launchAndCollect(
     flow: Flow<T>,
@@ -43,4 +45,10 @@ fun ImageView.bindImageUrl(
 
 fun String.splitAndGetJustName(): String {
     return this.split(",")[0]
+}
+
+fun DayInfoDomain.getWeatherAverage(): String {
+    val average = ((this.maxTempCelsius + this.minTempCelsius) / 2).toBigDecimal()
+        .setScale(1, RoundingMode.UP).toDouble()
+    return "${average}º"
 }

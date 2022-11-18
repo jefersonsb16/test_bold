@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="14dp">
+
+        <TextView
+            android:id="@+id/textViewDateForecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/causten_round"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2022-11-18" />
+
+        <TextView
+            android:id="@+id/textViewConditionForecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/causten_round"
+            android:textColor="@color/colorSubtitle"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDateForecast"
+            tools:text="Mostly Sunny" />
+
+        <TextView
+            android:id="@+id/textViewTempForecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewConditionForecast"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIconConditionForecast"
+            app:layout_constraintTop_toTopOf="@+id/textViewDateForecast"
+            tools:text="28º" />
+
+        <ImageView
+            android:id="@+id/imageViewIconConditionForecast"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/generic_content_description"
+            android:src="@drawable/weather_placeholder"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewConditionForecast"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewDateForecast" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

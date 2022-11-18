@@ -34,6 +34,7 @@ fun WeatherForecastServer.toWeatherForecastDomain() = WeatherForecastDomain(
 
 fun ForecastDayServer.toForecastDayDomain() = ForecastDayDomain(
     date,
+    id,
     dayInfo = dayInfo.toDayInfoDomain()
 )
 

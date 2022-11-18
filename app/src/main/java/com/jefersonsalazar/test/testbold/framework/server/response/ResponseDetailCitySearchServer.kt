@@ -37,6 +37,8 @@ data class WeatherForecastServer(
 
 data class ForecastDayServer(
     val date: String = "",
+    @SerializedName("date_epoch")
+    val id: Long = 0,
     @SerializedName("day")
     val dayInfo: DayInfoServer
 )

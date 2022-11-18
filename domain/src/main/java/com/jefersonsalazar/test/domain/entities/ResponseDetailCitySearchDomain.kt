@@ -29,6 +29,7 @@ data class WeatherForecastDomain(
 
 data class ForecastDayDomain(
     val date: String = "",
+    val id: Long = 0,
     val dayInfo: DayInfoDomain
 )
 

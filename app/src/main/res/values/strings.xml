@@ -12,6 +12,7 @@
 
     <!-- region detail search -->
     <string name="title_detail_search_text">City detail</string>
+    <string name="title_weather_forecast_text">Weather forecast</string>
 
     <!-- region error messages -->
     <string name="error">Error!</string>

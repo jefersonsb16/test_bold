@@ -15,6 +15,7 @@ import com.jefersonsalazar.test.testbold.R
 import com.jefersonsalazar.test.testbold.databinding.FragmentDetailSearchBinding
 import com.jefersonsalazar.test.testbold.features.ShowErrorFactory
 import com.jefersonsalazar.test.testbold.features.bindImageUrl
+import com.jefersonsalazar.test.testbold.features.detail_search.adapter.WeatherForecastAdapter
 import com.jefersonsalazar.test.testbold.features.launchAndCollect
 import com.jefersonsalazar.test.testbold.features.splitAndGetJustName
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,7 @@ class DetailSearchFragment : Fragment() {
     private val detailSearchViewModel: DetailSearchViewModel by viewModels()
     private val safeArgs: DetailSearchFragmentArgs by navArgs()
     private var _binding: FragmentDetailSearchBinding? = null
+    private val weatherForecastAdapter = WeatherForecastAdapter()
     private val showErrorFactory = ShowErrorFactory()
     private val binding get() = _binding!!
 
@@ -56,6 +58,10 @@ class DetailSearchFragment : Fragment() {
 
         binding.textViewTitleDetailSearch.text = locationName
         detailSearchViewModel.onGetDetailCitySearch(locationName.splitAndGetJustName())
+
+        binding.recyclerViewWeatherForecast.apply {
+            adapter = weatherForecastAdapter
+        }
     }
 
     private fun initObservables() {
@@ -74,6 +80,7 @@ class DetailSearchFragment : Fragment() {
         }
         state.detailCity?.let { detailCity ->
             loadCurrentWeatherInformation(detailCity.currentWeather)
+            weatherForecastAdapter.submitList(detailCity.weatherForecast.forecastDay)
         }
     }
 

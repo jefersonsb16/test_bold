@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/layout/item_view_city.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/item_view_recent_searches.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/item_view_search_city.xml" value="0.20052083333333334" />
+        <entry key="app/src/main/res/layout/item_view_weather_forecast.xml" value="0.3421875" />
         <entry key="app/src/main/res/layout/view_not_results_search.xml" value="0.3421875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2265" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_splash.xml" value="0.2265" />
