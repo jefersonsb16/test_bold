@@ -17,6 +17,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
+
+    @Provides
+    @Singleton
+    @Named("apiKey")
+    fun apiKeyProvider(): String = BuildConfig.API_KEY
+
     @Singleton
     @Provides
     @Named("baseUrl")

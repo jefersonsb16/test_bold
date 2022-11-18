@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TestBold</string>
+
+    <!-- region search -->
+    <string name="title_search_text">Choose a city</string>
+    <string name="hint_search_input_text">Search a city</string>
+    <string name="title_recent_searches_text">Recently viewed</string>
+    <string name="title_search_results_text">Search results</string>
+
+    <!-- region detail search -->
 </resources>
