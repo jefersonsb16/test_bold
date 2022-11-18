@@ -72,7 +72,7 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
         }
         state.error?.let { error ->
             showErrorFactory.getDialog(requireContext(), error).show()
-            searchViewModel.resetState()
+            searchViewModel.resetStateError()
         }
     }
 

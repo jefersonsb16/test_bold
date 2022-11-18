@@ -31,7 +31,7 @@ class SearchCityViewModel @Inject constructor(
         val responseSearch = searchCitiesUseCase(search)
         responseSearch.fold(
             ifLeft = { error ->
-                _state.update { UIState(error = error) }
+                _state.update { it.copy(error = error, loading = false) }
             },
             ifRight = { results ->
                 _state.update {
@@ -66,8 +66,8 @@ class SearchCityViewModel @Inject constructor(
         _state.update { it.copy(searchResultsList = listOf(), showMessageStartSearch = true) }
     }
 
-    fun resetState() {
-        _state.update { UIState() }
+    fun resetStateError() {
+        _state.update { it.copy(error = null) }
     }
 
     data class UIState(

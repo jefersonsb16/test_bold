@@ -75,12 +75,20 @@ class DetailSearchFragment : Fragment() {
         state.error?.let { error ->
             binding.includeNotResultsDetailCity.imageViewNotSearchResults.isVisible = true
             binding.includeNotResultsDetailCity.textViewNotSearchResults.isVisible = true
+            binding.textViewTitleWeatherForecast.isVisible = false
+            binding.imageviewIconCurrentWeatherCondition.isVisible = false
+            binding.textViewCurrentWeatherCondition.isVisible = false
+            binding.textViewCurrentWeatherTemp.isVisible = false
+            binding.recyclerViewWeatherForecast.isVisible = false
+
             showErrorFactory.getDialog(requireContext(), error).show()
             detailSearchViewModel.resetState()
         }
         state.detailCity?.let { detailCity ->
             loadCurrentWeatherInformation(detailCity.currentWeather)
             weatherForecastAdapter.submitList(detailCity.weatherForecast.forecastDay)
+            binding.textViewTitleWeatherForecast.isVisible = true
+            binding.recyclerViewWeatherForecast.isVisible = true
         }
     }
 
