@@ -46,7 +46,7 @@ class RecentSearchesAdapter(
 
         fun bind(city: CityDomain) {
             binding.textViewNameCityRecentSearches.text = city.name
-            itemView.setOnClickListener { listener.onItemClickListener(city) }
+            itemView.setOnClickListener { listener.onItemClickListener(city, true) }
         }
     }
 

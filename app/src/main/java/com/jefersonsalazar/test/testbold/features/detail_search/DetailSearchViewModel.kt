@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.jefersonsalazar.test.domain.ErrorDomain
 import com.jefersonsalazar.test.domain.entities.ResponseDetailCitySearchDomain
 import com.jefersonsalazar.test.usecases.GetDetailCitySearchUseCase
+import com.jefersonsalazar.test.usecases.OnRemoveCityFromLocalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailSearchViewModel @Inject constructor(
-    private val getDetailCitySearchUseCase: GetDetailCitySearchUseCase
+    private val getDetailCitySearchUseCase: GetDetailCitySearchUseCase,
+    private val onRemoveCityFromLocalUseCase: OnRemoveCityFromLocalUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UIState())
@@ -42,9 +44,14 @@ class DetailSearchViewModel @Inject constructor(
         _state.update { UIState() }
     }
 
+    fun onRemoveCity(cityId: Long) = viewModelScope.launch {
+        _state.update { UIState(removedCity = onRemoveCityFromLocalUseCase(cityId)) }
+    }
+
     data class UIState(
         val error: ErrorDomain? = null,
         val loading: Boolean = false,
+        val removedCity: Unit? = null,
         val detailCity: ResponseDetailCitySearchDomain? = null
     )
 }

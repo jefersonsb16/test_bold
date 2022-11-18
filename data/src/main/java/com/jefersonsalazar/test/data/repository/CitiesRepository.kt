@@ -23,4 +23,6 @@ class CitiesRepository(
 
     suspend fun getDetailCity(nameCity: String): Either<ErrorDomain, ResponseDetailCitySearchDomain> =
         remoteCitiesDataSource.getDetailCity(apiKey, nameCity)
+
+    suspend fun removeCity(id: Long) = localCitiesDataSource.removeCity(id)
 }

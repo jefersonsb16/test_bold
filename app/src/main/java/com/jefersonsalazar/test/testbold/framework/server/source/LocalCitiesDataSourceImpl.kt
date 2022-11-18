@@ -24,4 +24,6 @@ class LocalCitiesDataSourceImpl(
                 it.toCityDomain()
             }
         }
+
+    override suspend fun removeCity(id: Long) = cityDao.removeCity(id)
 }

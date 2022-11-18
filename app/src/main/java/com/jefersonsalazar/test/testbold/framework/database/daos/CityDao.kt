@@ -15,4 +15,7 @@ interface CityDao {
 
     @Query("SELECT * FROM City")
     fun getRecentSearches(): Flow<List<CityEntity>>
+
+    @Query("DELETE FROM City WHERE id = :id")
+    suspend fun removeCity(id: Long)
 }

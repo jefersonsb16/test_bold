@@ -22,5 +22,11 @@
         <argument
             android:name="locationText"
             app:argType="string" />
+        <argument
+            android:name="cityId"
+            app:argType="long" />
+        <argument
+            android:name="showBtnRemoveCity"
+            app:argType="boolean" />
     </fragment>
 </navigation>

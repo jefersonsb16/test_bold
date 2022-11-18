@@ -46,7 +46,7 @@ class SearchCityAdapter(
 
         fun bind(city: CityDomain) {
             binding.textViewInformationCity.text = "${city.name}, ${city.country}"
-            itemView.setOnClickListener { listener.onItemClickListener(city) }
+            itemView.setOnClickListener { listener.onItemClickListener(city, false) }
         }
     }
 

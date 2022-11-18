@@ -100,10 +100,12 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
         }
     }
 
-    override fun onItemClickListener(city: CityDomain) {
+    override fun onItemClickListener(city: CityDomain, showBtnRemoveCity: Boolean) {
         searchViewModel.saveCityInRecentlyViewed(city)
         val navAction = SearchCityFragmentDirections.actionSearchCityFragmentToDetailSearchFragment(
-            "${city.name}, ${city.country}"
+            "${city.name}, ${city.country}",
+            city.id,
+            showBtnRemoveCity
         )
         findNavController().navigate(navAction)
     }

@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface LocalCitiesDataSource {
     suspend fun saveCity(city: CityDomain)
     fun getRecentSearches(): Flow<List<CityDomain>>
+    suspend fun removeCity(id: Long)
 }
