@@ -8,7 +8,16 @@
     <string name="title_recent_searches_text">Recently viewed</string>
     <string name="title_search_results_text">Search results</string>
     <string name="message_start_search_text">Enter at least 3 letters to start search</string>
-    <string name="text_not_results_search">No results found for your search</string>
+    <string name="not_results_search_text">No results found for your search</string>
 
     <!-- region detail search -->
+
+    <!-- region error messages -->
+    <string name="error">Error!</string>
+    <string name="message_not_internet_text">You are currently offline</string>
+    <string name="bad_request_error_text">Error in the data sent</string>
+    <string name="unauthorized_error_text">Permissions error</string>
+    <string name="not_found_request_error_text">Request not found</string>
+    <string name="generic_error_text">An error occurred, try again later</string>
+    <string name="server_error_text">We have internal problems, try again later</string>
 </resources>

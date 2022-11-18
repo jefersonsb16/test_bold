@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.jefersonsalazar.test.domain.entities.CityDomain
 import com.jefersonsalazar.test.testbold.databinding.FragmentSearchCityBinding
+import com.jefersonsalazar.test.testbold.features.ShowErrorFactory
 import com.jefersonsalazar.test.testbold.features.launchAndCollect
 import com.jefersonsalazar.test.testbold.features.search.adapter.IClickItemCityListener
 import com.jefersonsalazar.test.testbold.features.search.adapter.RecentSearchesAdapter
@@ -26,6 +27,7 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
     private var _binding: FragmentSearchCityBinding? = null
     private val binding get() = _binding!!
 
+    private val showErrorFactory = ShowErrorFactory()
     private val searchViewModel: SearchCityViewModel by viewModels()
     private val searchCityAdapter: SearchCityAdapter = SearchCityAdapter(this)
     private val recentSearchesAdapter: RecentSearchesAdapter = RecentSearchesAdapter(this)
@@ -68,6 +70,10 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
             binding.backGroundViewNotSearchResults.isVisible = isVisible
             binding.imageViewNotSearchResults.isVisible = isVisible
             binding.textViewNotSearchResults.isVisible = isVisible
+        }
+        state.error?.let { error ->
+            showErrorFactory.getDialog(requireContext(), error).show()
+            searchViewModel.resetState()
         }
     }
 

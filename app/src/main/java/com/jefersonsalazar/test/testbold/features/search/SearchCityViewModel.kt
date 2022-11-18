@@ -66,6 +66,10 @@ class SearchCityViewModel @Inject constructor(
         _state.update { it.copy(searchResultsList = listOf(), showMessageStartSearch = true) }
     }
 
+    fun resetState() {
+        _state.update { UIState() }
+    }
+
     data class UIState(
         val error: ErrorDomain? = null,
         val loading: Boolean = false,

@@ -96,7 +96,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSearchResults" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearchResults"
+        tools:visibility="invisible" />
 
     <ProgressBar
         android:id="@+id/searchProgress"
@@ -139,7 +140,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/causten_round"
         android:gravity="center_horizontal"
-        android:text="@string/text_not_results_search"
+        android:text="@string/not_results_search_text"
         android:textColor="@color/colorSecondary"
         android:textSize="17sp"
         android:textStyle="bold"
