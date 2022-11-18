@@ -4,24 +4,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jefersonsalazar.test.domain.ErrorDomain
 import com.jefersonsalazar.test.domain.entities.CityDomain
+import com.jefersonsalazar.test.usecases.GetLocalRecentSearchesUseCase
 import com.jefersonsalazar.test.usecases.SaveRecentCityViewedUseCase
 import com.jefersonsalazar.test.usecases.SearchCitiesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchCityViewModel @Inject constructor(
     private val searchCitiesUseCase: SearchCitiesUseCase,
-    private val saveRecentCityViewedUseCase: SaveRecentCityViewedUseCase
+    private val saveRecentCityViewedUseCase: SaveRecentCityViewedUseCase,
+    private val getLocalRecentSearchesUseCase: GetLocalRecentSearchesUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UIState())
     val state: StateFlow<UIState> get() = _state.asStateFlow()
+
+    init {
+        onGetRecentSearches()
+    }
 
     fun onSearchCity(search: String) = viewModelScope.launch {
         showLoading()
@@ -34,6 +37,14 @@ class SearchCityViewModel @Inject constructor(
                 _state.update { it.copy(searchResultsList = results, loading = false) }
             }
         )
+    }
+
+    private fun onGetRecentSearches() = viewModelScope.launch {
+        getLocalRecentSearchesUseCase()
+            .catch {}
+            .collect { recentCities ->
+                _state.update { it.copy(recentSearchesList = recentCities) }
+            }
     }
 
     private fun showLoading() {

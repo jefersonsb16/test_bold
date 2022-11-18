@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jefersonsalazar.test.domain.entities.CityDomain
 import com.jefersonsalazar.test.testbold.R
-import com.jefersonsalazar.test.testbold.databinding.ItemViewSearchCityBinding
+import com.jefersonsalazar.test.testbold.databinding.ItemViewRecentSearchesBinding
 
-class SearchCityAdapter(
+class RecentSearchesAdapter(
     private val listener: IClickItemCityListener
-) : RecyclerView.Adapter<SearchCityAdapter.ViewHolderCity>() {
+) : RecyclerView.Adapter<RecentSearchesAdapter.ViewHolderRecentCity>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<CityDomain>() {
         override fun areItemsTheSame(oldItem: CityDomain, newItem: CityDomain): Boolean {
@@ -25,13 +25,13 @@ class SearchCityAdapter(
     }
     private val differ = AsyncListDiffer(this, diffCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCity {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRecentCity {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_view_search_city, parent, false)
-        return ViewHolderCity(view)
+        val view = inflater.inflate(R.layout.item_view_recent_searches, parent, false)
+        return ViewHolderRecentCity(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolderCity, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderRecentCity, position: Int) {
         holder.bind(differ.currentList[position])
     }
 
@@ -41,11 +41,11 @@ class SearchCityAdapter(
         differ.submitList(list)
     }
 
-    inner class ViewHolderCity(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemViewSearchCityBinding.bind(itemView)
+    inner class ViewHolderRecentCity(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemViewRecentSearchesBinding.bind(itemView)
 
         fun bind(city: CityDomain) {
-            binding.textViewInformationCity.text = "${city.name}, ${city.country}"
+            binding.textViewNameCityRecentSearches.text = city.name
             itemView.setOnClickListener { listener.onItemClickListener(city) }
         }
     }

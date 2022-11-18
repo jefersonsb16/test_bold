@@ -6,3 +6,7 @@ import com.jefersonsalazar.test.testbold.framework.database.entities.CityEntity
 fun CityDomain.toCityEntity() = CityEntity(
     id, name, region, country
 )
+
+fun CityEntity.toCityDomain() = CityDomain(
+    id, name, region, country
+)

@@ -14,8 +14,11 @@ import com.jefersonsalazar.test.domain.entities.CityDomain
 import com.jefersonsalazar.test.testbold.databinding.FragmentSearchCityBinding
 import com.jefersonsalazar.test.testbold.features.launchAndCollect
 import com.jefersonsalazar.test.testbold.features.search.adapter.IClickItemCityListener
+import com.jefersonsalazar.test.testbold.features.search.adapter.RecentSearchesAdapter
 import com.jefersonsalazar.test.testbold.features.search.adapter.SearchCityAdapter
 import dagger.hilt.android.AndroidEntryPoint
+
+const val MIN_LENGTH_TEXT_INPUT_FOR_SEARCH = 3
 
 @AndroidEntryPoint
 class SearchCityFragment : Fragment(), IClickItemCityListener {
@@ -25,6 +28,7 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
 
     private val searchViewModel: SearchCityViewModel by viewModels()
     private val searchCityAdapter: SearchCityAdapter = SearchCityAdapter(this)
+    private val recentSearchesAdapter: RecentSearchesAdapter = RecentSearchesAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,24 +56,31 @@ class SearchCityFragment : Fragment(), IClickItemCityListener {
         state.searchResultsList?.let { cities ->
             searchCityAdapter.submitList(cities)
         }
+        state.recentSearchesList?.let { recentCities ->
+            recentSearchesAdapter.submitList(recentCities)
+            binding.textViewRecentSearches.isVisible = recentCities.isNotEmpty()
+            binding.recyclerViewRecentSearches.isVisible = recentCities.isNotEmpty()
+        }
     }
 
     private fun initView() {
         binding.recyclerViewSearchResults.apply {
             adapter = searchCityAdapter
         }
+        binding.recyclerViewRecentSearches.apply {
+            adapter = recentSearchesAdapter
+        }
         binding.edtSearchCities.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 goToSearchCity(p0.toString())
             }
-
             override fun afterTextChanged(p0: Editable?) {}
         })
     }
 
     private fun goToSearchCity(search: String) {
-        if (search.length >= 3) {
+        if (search.length >= MIN_LENGTH_TEXT_INPUT_FOR_SEARCH) {
             searchViewModel.onSearchCity(search)
         }
     }

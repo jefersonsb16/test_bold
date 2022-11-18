@@ -1,6 +1,7 @@
 package com.jefersonsalazar.test.testbold.features.search
 
 import com.jefersonsalazar.test.data.repository.CitiesRepository
+import com.jefersonsalazar.test.usecases.GetLocalRecentSearchesUseCase
 import com.jefersonsalazar.test.usecases.SaveRecentCityViewedUseCase
 import com.jefersonsalazar.test.usecases.SearchCitiesUseCase
 import dagger.Module
@@ -24,4 +25,10 @@ class SearchCityModule {
     fun saveRecentCityViewedUseCaseProvider(
         citiesRepository: CitiesRepository
     ) = SaveRecentCityViewedUseCase(citiesRepository)
+
+    @Provides
+    @ViewModelScoped
+    fun getLocalRecentSearchesUseCaseProvider(
+        citiesRepository: CitiesRepository
+    ) = GetLocalRecentSearchesUseCase(citiesRepository)
 }
